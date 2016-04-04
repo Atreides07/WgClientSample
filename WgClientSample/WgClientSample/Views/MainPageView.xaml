@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:WgClientSample.ViewModels;assembly=WgClientSample"
+             x:Class="WgClientSample.Views.MainPageView" BackgroundColor="#1C1C1E">
+  
+  <ContentView Padding="20">
+    <StackLayout>
+      <Label Text="Поиск" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#F9D088" FontSize="50" />
+      <Label Text="Введите ник игрока:" TextColor="White" FontSize="24"></Label>
+      <Entry Text="{Binding SearchNickname, Mode=TwoWay}"></Entry>
+      <Button Text="Найти" TextColor="White" Command="{Binding SearchCommand}"></Button>
+      <ListView ItemsSource="{Binding GamerAccounts}" ItemSelected="ListView_OnItemSelected">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <Grid HorizontalOptions="FillAndExpand">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                  </Grid.ColumnDefinitions>
+                  <Label Text="{Binding Nickname}" FontSize="20"></Label>
+                </Grid>
+              </ViewCell.View>
+            </ViewCell>
+            
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>  
+  </ContentView>
+  
+  
+</ContentPage>
