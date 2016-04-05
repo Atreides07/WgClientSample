@@ -19,7 +19,9 @@ namespace WgClientSample.Views
         {
             this.accountId = accountId.ToString();
             InitializeComponent();
+            //NavigationPage.SetHasNavigationBar(this,false);
             this.BindingContext=new DetailsPageViewModel();
+            this.Padding=new Thickness(0,0,0,0);
         }
 
         protected override async void OnAppearing()

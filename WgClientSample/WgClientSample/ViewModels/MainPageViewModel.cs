@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 using WGClient.Wargaming.NET;
@@ -10,6 +11,20 @@ namespace WgClientSample.ViewModels
     {
         private string searchNickname;
         private List<ResponseWgnAccountList> gamerAccounts;
+        private bool isLoadData;
+
+        public bool IsLoadData
+        {
+            get
+            {
+                return isLoadData;
+            }
+            set
+            {
+                isLoadData = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string SearchNickname
         {
@@ -27,13 +42,25 @@ namespace WgClientSample.ViewModels
             {
                 return new Command(async () =>
                 {
-                    var client=new WGClient.Client();
-                    var accounts=await client.SendRequestArray<ResponseWgnAccountList>(new RequestWotAccountList()
+                    try
                     {
-                        ApplicationId = "demo",
-                        Search = SearchNickname
-                    });
-                    GamerAccounts = accounts;
+                        IsLoadData = true;
+                        var client = new WGClient.Client();
+                        var accounts = await client.SendRequestArray<ResponseWgnAccountList>(new RequestWotAccountList()
+                        {
+                            ApplicationId = "demo",
+                            Search = SearchNickname
+                        });
+                        GamerAccounts = accounts;
+                    }
+                    catch (Exception exp)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("error", exp.Message, "Ok");
+                    }
+                    finally
+                    {
+                        IsLoadData = false;
+                    }
                 });
             }
         }

@@ -2,10 +2,44 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:WgClientSample.ViewModels;assembly=WgClientSample"
-             x:Class="WgClientSample.Views.DetailsPageView">
+             x:Class="WgClientSample.Views.DetailsPageView"
+             Title="{Binding NickName}"
+             >
+  <ContentPage.BindingContext>
+    <viewModels:DetailsPageViewModel></viewModels:DetailsPageViewModel>
+  </ContentPage.BindingContext>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+       <Style x:Key="LabelHeaderStyle" TargetType="Label">
+         <Setter Property="FontSize" Value="20"></Setter>
+       </Style>
+      <Style x:Key="LabelValueStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="30"></Setter>
+      </Style>
+      <Style x:Key="ValuePanel" TargetType="StackLayout">
+        <Setter Property="Padding" Value="20,0,20,10"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
   <ScrollView>
     <StackLayout>
-      <Label Text="{Binding NickName}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="50" />
-    </StackLayout>  
+      <StackLayout Style="{StaticResource ValuePanel}">
+        <Label Text="Дата регистрации:" Style="{StaticResource LabelHeaderStyle}"></Label>
+        <Label Text="{Binding RegistrationDate}" Style="{StaticResource LabelValueStyle}"></Label>
+      </StackLayout>
+      <StackLayout Style="{StaticResource ValuePanel}">
+        <Label Text="Победы:" Style="{StaticResource LabelHeaderStyle}"></Label>
+        <Label Text="{Binding WinRatePercentage}" Style="{StaticResource LabelValueStyle}"></Label>
+      </StackLayout>
+      <StackLayout Style="{StaticResource ValuePanel}">
+        <Label Text="Бои:" Style="{StaticResource LabelHeaderStyle}"></Label>
+        <Label Text="{Binding BattlesCount}" Style="{StaticResource LabelValueStyle}"></Label>
+      </StackLayout>
+      <StackLayout Style="{StaticResource ValuePanel}">
+        <Label Text="Средний опыт за бой:" Style="{StaticResource LabelHeaderStyle}"></Label>
+        <Label Text="{Binding BattleAvgXp}" Style="{StaticResource LabelValueStyle}"></Label>
+      </StackLayout>
+    </StackLayout>
+    
   </ScrollView>
 </ContentPage>
