@@ -15,8 +15,6 @@ namespace WgClientSample.Views
         {
             InitializeComponent();
             BindingContext=new MainPageViewModel();
-            //MyActivityIndicator.IsRunning = false;
-            //MyActivityIndicator.IsVisible = false;
 
             NavigationPage.SetHasNavigationBar(this,false);
         }
@@ -24,8 +22,6 @@ namespace WgClientSample.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //MyActivityIndicator.IsRunning = false;
-            //MyActivityIndicator.IsVisible = false;
         }
 
         private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
