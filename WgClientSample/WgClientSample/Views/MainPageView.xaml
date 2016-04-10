@@ -2,15 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:WgClientSample.ViewModels;assembly=WgClientSample"
-             x:Class="WgClientSample.Views.MainPageView" BackgroundColor="#1C1C1E">
-  
+             x:Class="WgClientSample.Views.MainPageView">
   <ContentView Padding="20">
-    
       <StackLayout>
         <Label Text="Поиск" VerticalOptions="Center" HorizontalOptions="Center" TextColor="#F9D088" FontSize="50" />
-        <Label Text="Введите ник игрока:" TextColor="White" FontSize="24"></Label>
-        <Entry Text="{Binding SearchNickname, Mode=TwoWay}"></Entry>
-        <Button Text="Найти" TextColor="White" Command="{Binding SearchCommand}"></Button>
+        <Label Text="Введите ник игрока:" FontSize="24"></Label>
+        <Entry Text="{Binding SearchNickname, Mode=TwoWay}"  FontSize="24"></Entry>
+        <Button Text="Найти" Command="{Binding SearchCommand}"  FontSize="24"></Button>
         <Grid>
           <ListView ItemsSource="{Binding GamerAccounts}" ItemSelected="ListView_OnItemSelected">
             <ListView.ItemTemplate>
@@ -26,16 +24,11 @@
                     </Grid>
                   </ViewCell.View>
                 </ViewCell>
-            
               </DataTemplate>
             </ListView.ItemTemplate>
           </ListView>
           <ActivityIndicator IsVisible="{Binding IsLoadData}" VerticalOptions="Start"></ActivityIndicator>
         </Grid>
       </StackLayout>
-      
-    
   </ContentView>
-  
-  
 </ContentPage>
